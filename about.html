@@ -1,214 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 
 <head>
-  <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-
-  <title>Urotaxi</title>
-
-  <!-- slider stylesheet -->
+  <title>Poytaxt Taxi</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-
-  <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-  <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
 
   <div class="hero_area">
-    <!-- header section strats -->
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <img src="images/logo_99.png" alt="Poytaxt Taxi Logo" class="logo">
           </a>
-          </a>
+          <div class="lang-switcher">
+            <button type="button" class="lang-btn" data-lang="uz">UZ</button>
+            <span class="lang-sep">/</span>
+            <button type="button" class="lang-btn" data-lang="ru">RU</button>
+            <span class="lang-sep">/</span>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item ">
-                  <a class="nav-link" href="index.html">Asosiy <span class="sr-only">(current)</span></a>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html"><span data-i18n="nav.home">Asosiy</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="about.html"> Biz haqimizda</a>
+                  <a class="nav-link" href="about.html"><span data-i18n="nav.about">Biz haqimizda</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="service.html"> Xizmatlar </a>
+                  <a class="nav-link" href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="news.html"> Yangiliklar</a>
+                  <a class="nav-link" href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Biz bilan bog'lanish</a>
+                  <a class="nav-link" href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a>
                 </li>
-
               </ul>
             </div>
           </div>
         </nav>
       </div>
     </header>
-    <!-- end header section -->
   </div>
-
-  <!-- about section -->
 
   <section class="about_section layout_padding">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
           <div class="detail-box">
-            <h2>
-              Biz <br>
-              haqimizda
-            </h2>
-            <p>
-              2019 yildan beri 250 000+ xavfsiz safar.<br>
-              Poytaxt Taxi shaharlararo tashuv sohasida barqaror va ishonchli xizmat ko‘rsatib kelmoqda. Minglab doimiy mijozlar bizni tanlaydi, chunki biz uchun xavfsizlik, intizom va qulaylik ustuvor.
-              Har safar — mas’uliyat bilan.
-            </p>
-            <a href="index.html">
-              Batafsil
-            </a>
+            <h2 data-i18n-html="about.page_title">Biz<br>haqimizda</h2>
+            <p data-i18n-html="about.text">2019 yildan beri 250 000+ xavfsiz safar.<br>Poytaxt Taxi shaharlararo tashuv sohasida barqaror va ishonchli xizmat ko'rsatib kelmoqda. Minglab doimiy mijozlar bizni tanlaydi, chunki biz uchun xavfsizlik, intizom va qulaylik ustuvor.<br>Har safar — mas'uliyat bilan.</p>
+            <a href="index.html" data-i18n="about.details">Batafsil</a>
           </div>
         </div>
         <div class="col-md-6">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <div id="aboutCarousel" class="carousel slide about_carousel" data-ride="carousel" data-interval="3000">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/conalt-removebg-preview.png" alt="Chevrolet Cobalt">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gentra-removebg-preview.png" alt="Hyundai Gentra">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/malibu-removebg-preview.png" alt="Chevrolet Malibu">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/onix-removebg-preview.png" alt="Chevrolet Onix">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/tracker-removebg-preview.png" alt="Chevrolet Tracker">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- end about section -->
-
-  <!-- info section -->
 
   <section class="info_section layout_padding-top layout_padding2-bottom">
     <div class="container">
       <div class="box">
         <div class="info_form">
-          <h4>
-            Poytaxt Taxi - Har safarda qulaylik
-          </h4>
-          <form action="">
-
-            <div class="d-flex justify-content-end">
-
-            </div>
-          </form>
+          <h4 data-i18n="footer.tagline">Poytaxt Taxi - Har safarda qulaylik</h4>
+          <form action=""><div class="d-flex justify-content-end"></div></form>
         </div>
         <div class="info_links">
           <ul>
-            <li class=" ">
-              <a class="" href="index.html">Asosiy <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="">
-              <a class="" href="about.html"> Biz haqimizda</a>
-            </li>
-            <li class="">
-              <a class="" href="service.html"> Xizmatlar </a>
-            </li>
-            <li class="">
-              <a class="" href="news.html"> Yangiliklar</a>
-            </li>
-            <li class="">
-              <a class="" href="contact.html">Biz bilan bog'lanish</a>
-            </li>
-
+            <li><a href="index.html"><span data-i18n="nav.home">Asosiy</span></a></li>
+            <li><a href="about.html"><span data-i18n="nav.about">Biz haqimizda</span></a></li>
+            <li><a href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a></li>
+            <li><a href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a></li>
+            <li><a href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a></li>
           </ul>
         </div>
         <div class="info_social">
-          <div>
-            <a href="">
-              <img src="images/fb.png" alt="">
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="images/twitter.png" alt="">
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="images/linkedin.png" alt="">
-            </a>
-          </div>
-          <div>
-            <a href="">
-              <img src="images/instagram.png" alt="">
-            </a>
-          </div>
+          <div><a href=""><img src="images/fb.png" alt=""></a></div>
+          <div><a href=""><img src="images/twitter.png" alt=""></a></div>
+          <div><a href=""><img src="images/linkedin.png" alt=""></a></div>
+          <div><a href="https://www.instagram.com/poytaxt_taxi?igsh=MXBsNGhzajdlZm0zZw==" target="_blank"><img src="images/instagram.png" alt=""></a></div>
         </div>
       </div>
     </div>
-
   </section>
 
-  <!-- end info section -->
-
-  <!-- footer section -->
   <section class="container-fluid footer_section">
     <div class="container">
-      <p>
-        &copy; 2026 Barcha huquqlar himoyalangan - 
-        <a href="https://html.design/">Nest Data Group</a>
-      </p>
+      <p>&copy; 2026 <span data-i18n="footer.rights">Barcha huquqlar himoyalangan</span> - <a href="https://html.design/">Nest Data Group</a></p>
     </div>
   </section>
-  <!-- footer section -->
 
+  <script type="text/javascript" src="js/i18n.js"></script>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-  </script>
-
-
-  <!-- owl carousel script -->
-  <script type="text/javascript">
-    $(".owl-carousel").owlCarousel({
-      loop: true,
-      margin: 20,
-      navText: [],
-      autoplay: true,
-      autoplayHoverPause: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        768: {
-          items: 2
-        },
-        1000: {
-          items: 2
-        }
-      }
-    });
-  </script>
-  <!-- end owl carousel script -->
-
 </body>
 
 </html>

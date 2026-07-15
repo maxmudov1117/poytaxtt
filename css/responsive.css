@@ -1,6 +1,11 @@
 @media (max-width: 1120px) {}
 
 @media (max-width: 992px) {
+  .header_section .lang-switcher {
+    top: 14px;
+    right: 65px;
+  }
+
   .hero_area {
     min-height: auto;
   }
@@ -120,5 +125,78 @@
 @media (min-width: 1200px) {
   .container {
     max-width: 1170px;
+  }
+}
+
+/* Quick Call Banner Responsive */
+@media (max-width: 479px) {
+  .quick_call_section {
+    padding: 5px 0;
+  }
+  
+  .call-banner {
+    flex-direction: row;
+    gap: 4px;
+    font-size: 10px;
+  }
+  
+  .phone-icon {
+    font-size: 22px !important;
+    width: 34px !important;
+    height: 34px !important;
+  }
+  
+  .call-number {
+    font-size: 24px !important;
+    letter-spacing: 1px !important;
+  }
+  
+  .call-text {
+    font-size: 9px !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .quick_call_section {
+    padding: 6px 0;
+  }
+  
+  .call-banner {
+    flex-direction: row;
+    gap: 6px;
+    font-size: 10px;
+  }
+  
+  .phone-icon {
+    font-size: 28px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .call-number {
+    font-size: 32px !important;
+    letter-spacing: 2px !important;
+  }
+  
+  .call-text {
+    font-size: 11px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .quick_call_section {
+    padding: 8px 0;
+  }
+  
+  .phone-icon {
+    font-size: 36px !important;
+  }
+  
+  .call-number {
+    font-size: 44px !important;
+  }
+  
+  .call-text {
+    font-size: 14px !important;
   }
 }

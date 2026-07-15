@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 
 <head>
   <!-- Basic -->
@@ -41,6 +41,13 @@
           <a class="navbar-brand" href="index.html">
             <img src="images/logo_99.png" alt="Poytaxt Taxi Logo" class="logo">
           </a>
+          <div class="lang-switcher">
+            <button type="button" class="lang-btn" data-lang="uz">UZ</button>
+            <span class="lang-sep">/</span>
+            <button type="button" class="lang-btn" data-lang="ru">RU</button>
+            <span class="lang-sep">/</span>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,27 +57,40 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Asosiy <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="index.html"><span data-i18n="nav.home">Asosiy</span> <span class="sr-only"
+                      data-i18n="nav.current">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html"> Biz haqimizda</a>
+                  <a class="nav-link" href="about.html"><span data-i18n="nav.about">Biz haqimizda</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="service.html"> Xizmatlar </a>
+                  <a class="nav-link" href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="news.html"> Yangiliklar</a>
+                  <a class="nav-link" href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Biz bilan bog'lanish</a>
+                  <a class="nav-link" href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
+      <!-- quick call section inside header -->
+      <section class="quick_call_section">
+        <div class="container">
+          <div class="call-banner">
+            <div class="call-number" data-i18n="quick.label">Buyurtma uchun: </div>
+            <div class="phone-icon">📞</div>
+            <div class="call-number highlight">7799</div>
+          </div>
+        </div>
+      </section>
+      <!-- end quick call section -->
     </header>
     <!-- end header section -->
+
     <!-- slider section -->
     <section class=" slider_section ">
       <div class="container-fluid">
@@ -79,10 +99,10 @@
             <div class="box">
               <div class="detail-box">
 
-                <h1>
+                <h1 data-i18n="hero.title">
                   Shaharlararo taxi
                 </h1>
-                <h4>
+                <h4 data-i18n="hero.subtitle">
                   xizmatiga hush kelibsiz
                 </h4>
               </div>
@@ -98,34 +118,34 @@
                   <div class="carousel-item active">
 
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="">
+                      <img src="images/conalt-removebg-preview.png" alt="">
                     </div>
                   </div>
                   <div class="carousel-item">
                     <div class="img-box">
-                      <img src="images/slider-img-2.png" alt="">
+                      <img src="images/gentra-removebg-preview.png" alt="">
                     </div>
                   </div>
                   <div class="carousel-item">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="">
+                      <img src="images/malibu-removebg-preview.png" alt="">
                     </div>
                   </div>
                   <div class="carousel-item">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="">
+                      <img src="images/onix-removebg-preview.png" alt="">
                     </div>
                   </div>
                   <div class="carousel-item">
                     <div class="img-box">
-                      <img src="images/slider-img.png" alt="">
+                      <img src="images/tracker-removebg-preview.png" alt="">
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="btn-box">
-                <a href="" class="btn-1">
+                <a href="" class="btn-1" data-i18n="hero.details">
                   Batafsil
                 </a>
               </div>
@@ -133,42 +153,52 @@
           </div>
           <div class="col-lg-4 col-md-5 ">
             <div class="slider_form">
-              <h4>Buyurtma qoldirish</h4>
+              <h4 data-i18n="form.order_title">Buyurtma qoldirish</h4>
 
               <form id="bookingForm">
 
-                <input type="text" id="name" placeholder="Ismingiz">
+                <input type="text" id="name" data-i18n-placeholder="form.name" placeholder="Ismingiz">
 
                 <!-- Viloyatlar -->
                 <select id="fromRegion">
-                  <option value="">Qayerdan. (Viloyat)</option>
-                  <option value="fargona">Farg'ona</option>
-                  <option value="toshkent">Toshkent</option>
+                  <option value="" data-i18n="form.from_region">Qayerdan (Viloyat)</option>
+                  <option value="fargona" data-i18n="region.fargona">Farg'ona</option>
+                  <option value="toshkent" data-i18n="region.toshkent">Toshkent</option>
                 </select>
 
                 <select id="fromDistrict">
-                  <option value="">Qaysi shahar yoki tumandan</option>
+                  <option value="" data-i18n="form.from_district">Qaysi shahar yoki tumandan</option>
                 </select>
 
                 <select id="toRegion">
-                  <option value="">Qayerga (Viloyat)</option>
-                  <option value="fargona">Farg'ona</option>
-                  <option value="toshkent">Toshkent</option>
+                  <option value="" data-i18n="form.to_region">Qayerga (Viloyat)</option>
+                  <option value="fargona" data-i18n="region.fargona">Farg'ona</option>
+                  <option value="toshkent" data-i18n="region.toshkent">Toshkent</option>
                 </select>
 
                 <select id="toDistrict">
-                  <option value="">Qaysi shahar yoki tumanga</option>
+                  <option value="" data-i18n="form.to_district">Qaysi shahar yoki tumanga</option>
+                </select>
+
+                <!-- Yo'lovchilar soni -->
+                <select id="passengers" data-i18n-placeholder="form.passengers">
+                  <option value=""><span data-i18n="form.passengers">Yo'lovchilar soni</span></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5+</option>
                 </select>
 
                 <!-- Safar vaqti -->
                 <div class="time-wrapper">
-                  <span class="time-placeholder">Sana va vaqt</span>
+                  <span class="time-placeholder" data-i18n="form.datetime">Sana va vaqt</span>
                   <input type="datetime-local" class="time-input" id="time">
                 </div>
 
                 <div class="btm_input">
-                  <input type="tel" id="phone" placeholder="Telefon raqamingiz">
-                  <button type="submit">Yuborish</button>
+                  <input type="tel" id="phone" data-i18n-placeholder="form.phone" placeholder="Telefon raqamingiz">
+                  <button type="submit" data-i18n="form.submit">Yuborish</button>
                 </div>
 
               </form>
@@ -188,24 +218,42 @@
       <div class="row">
         <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
           <div class="detail-box">
-            <h2>
+            <h2 data-i18n-html="about.title">
               Biz <br>
               Haqimizda
             </h2>
-            <p>
+            <p data-i18n-html="about.text">
               2019 yildan beri 250 000+ xavfsiz safar.<br>
               Poytaxt Taxi shaharlararo tashuv sohasida barqaror va ishonchli xizmat ko‘rsatib kelmoqda. Minglab doimiy
               mijozlar bizni tanlaydi, chunki biz uchun xavfsizlik, intizom va qulaylik ustuvor.
               Har safar — mas’uliyat bilan.
             </p>
-            <a href="">
+            <a href="" data-i18n="about.details">
               Batafsil
             </a>
           </div>
         </div>
         <div class="col-md-6">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <div id="aboutCarousel" class="carousel slide about_carousel" data-ride="carousel" data-interval="3000">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/conalt-removebg-preview.png" alt="Chevrolet Cobalt">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/gentra-removebg-preview.png" alt="Hyundai Gentra">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/malibu-removebg-preview.png" alt="Chevrolet Malibu">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/onix-removebg-preview.png" alt="Chevrolet Onix">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/tracker-removebg-preview.png" alt="Chevrolet Tracker">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -219,7 +267,7 @@
   <section class="service_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 data-i18n-html="services.title">
           Bizning <br>
           xizmatlar
         </h2>
@@ -230,13 +278,13 @@
             <img src="images/delivery-man.png" alt="">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="services.passenger.title">
               Yo'lovchi tashish xizmati
             </h5>
-            <p>
+            <p data-i18n="services.passenger.desc">
               Farg'ona-Toshkent / Toshkent-Farg'ona
             </p>
-            <a href="">
+            <a href="" data-i18n="services.order">
               Buyurtma berish
             </a>
           </div>
@@ -246,13 +294,13 @@
             <img src="images/airplane.png" alt="">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="services.airport.title">
               Aeroportga olib borish
             </h5>
-            <p>
+            <p data-i18n="services.airport.desc">
               Aeroportdan olib kelish
             </p>
-            <a href="">
+            <a href="" data-i18n="services.order">
               Buyurtma berish
             </a>
           </div>
@@ -262,13 +310,13 @@
             <img src="images/backpack.png" alt="">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="services.delivery.title">
               Jo'natma xizmati
             </h5>
-            <p>
+            <p data-i18n="services.delivery.desc">
               Yuk va xujjatlarni yetkazib berish xizmati
             </p>
-            <a href="">
+            <a href="" data-i18n="services.order">
               Buyurtma berish
             </a>
           </div>
@@ -284,26 +332,65 @@
   <section class="news_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 data-i18n-html="news.title">
           Bizning <br>
           yangiliklar
         </h2>
       </div>
       <div class="news_container">
+
         <div class="box">
           <div class="date-box">
-            <h6>
-              23 Fevral 2026 yil
+            <h6 data-i18n="index.news_recent1.date">
+              10 Iyul 2026
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="images/2026-07-10 15.16.23.jpg" alt="">
+          </div>
+          <div class="detail-box">
+            <p data-i18n-html="index.news_recent1.text">
+              Endi bizga qo'ng'iroq qilish yanada oson! Poytaxt taksi xizmati uchun yangi qisqa raqam — 7799. Bir marta
+              tersangiz, kifoya.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="box">
+          <div class="date-box">
+            <h6 data-i18n="index.news_recent2.date">
+              08 July 2026
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="images/narxlar.png" alt="">
+          </div>
+          <div class="detail-box">
+            <p data-i18n-html="index.news_recent2.text">
+              Farg'ona — Toshkent — Farg'ona yo'nalishi bo'yicha narxlar:<br>
+              • Oldingi o'rindiq — 180 000 so'm<br>
+              • Orqa o'rindiq — 140 000 so'm<br><br>
+              Qulay, xavfsiz va o'z vaqtida. Buyurtma uchun bizga qo'ng'iroq qiling: <strong>7799</strong>
+            </p>
+          </div>
+        </div>
+
+
+        <div class="box">
+          <div class="date-box">
+            <h6 data-i18n="news1.date">
+              23 Fevral 2026
             </h6>
           </div>
           <div class="img-box">
             <img src="images/news-img2.png" alt="">
           </div>
           <div class="detail-box">
-            <h6>
+            <h6 data-i18n="news1.title">
               Poytaxt Taxi’da aksiya
             </h6>
-            <p>
+            <p data-i18n-html="news1.text">
               Har hafta aniqlaymiz:<br>
               • Eng faol yo‘lovchi<br>
               • Eng faol haydovchi<br>
@@ -312,44 +399,6 @@
               Tanlov tizim ma’lumotlari asosida.<br>
               <br>
               🎁 G‘oliblarga sovg‘a.
-            </p>
-          </div>
-        </div>
-        <div class="box">
-          <div class="date-box">
-            <h6>
-              01 Nov 2019
-            </h6>
-          </div>
-          <div class="img-box">
-            <img src="images/news-img.png" alt="">
-          </div>
-          <div class="detail-box">
-            <h6>
-              Eiusmod tempor incididunt
-            </h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            </p>
-          </div>
-        </div>
-        <div class="box">
-          <div class="date-box">
-            <h6>
-              01 Nov 2019
-            </h6>
-          </div>
-          <div class="img-box">
-            <img src="images/news-img.png" alt="">
-          </div>
-          <div class="detail-box">
-            <h6>
-              Eiusmod tempor incididunt
-            </h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
             </p>
           </div>
         </div>
@@ -364,7 +413,7 @@
   <section class="client_section layout_padding-bottom">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 data-i18n-html="clients.title">
           Mijozlarni <br>
           biz haqimizda <br>
           fikrlari
@@ -382,7 +431,7 @@
                   <h3>
                     Umarbek
                   </h3>
-                  <p>
+                  <p data-i18n="client1.text">
                     Salkam 5 yildan beri shu taksi kompaniyadan foydalanaman, qulay narxlar, ishonchli va tajribali
                     haydovchilar. Hammaga tavsiya qilaman.
                   </p>
@@ -399,7 +448,7 @@
                   <h3>
                     Zulfiya
                   </h3>
-                  <p>
+                  <p data-i18n="client2.text">
                     Talabalar uchun eng yaxshi tanlov deb bilaman, mashinalar xolati, salon ozodaligi. Ushbu kompaniyani
                     o'z tengdoshlarimga tavsiya qilaman.
                   </p>
@@ -420,7 +469,7 @@
   <section class="contact_section layout_padding-bottom">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 data-i18n-html="contact.title">
           Talab va<br>
           Takliflar
         </h2>
@@ -430,17 +479,18 @@
       <div class="row">
         <div class="col-md-5  offset-md-1">
           <div class="contact_form">
-            <h4>Talab va takliflaringizni qoldiring</h4>
+            <h4 data-i18n="contact.form_title">Talab va takliflaringizni qoldiring</h4>
 
             <form id="feedbackForm">
 
-              <input type="text" id="f_name" placeholder="Ismingiz">
+              <input type="text" id="f_name" data-i18n-placeholder="contact.name" placeholder="Ismingiz">
 
-              <input type="text" id="f_phone" placeholder="Telefon raqamingiz">
+              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="Telefon raqamingiz">
 
-              <input type="text" id="f_message" placeholder="Habar qoldirish" class="message_input">
+              <input type="text" id="f_message" data-i18n-placeholder="contact.message" placeholder="Habar qoldirish"
+                class="message_input">
 
-              <button type="submit">Yuborish</button>
+              <button type="submit" data-i18n="contact.submit">Yuborish</button>
 
             </form>
           </div>
@@ -462,11 +512,11 @@
       <div class="row">
         <div class="col-md-6">
           <div class="detail-box">
-            <h2>
+            <h2 data-i18n="app.title">
               Mobil ilovani yuklab oling
             </h2>
             <div class="text-box">
-              <h5>
+              <h5 data-i18n="app.desc">
                 Safar buyurtma qilish endi bir necha soniya ichida.
                 Ilovani App Store yoki Play Market’dan yuklab oling, ro‘yxatdan o‘ting va qulay safarni boshlang
               </h5>
@@ -483,7 +533,7 @@
               </p>
             </div>
             <div class="btn-box">
-              <a href="">
+              <a href="https://play.google.com/store/apps/details?id=com.insoft.poytaxt_taxi_client" target="_blank">
                 <img src="images/playstore.png" alt="">
               </a>
               <a href="">
@@ -494,7 +544,7 @@
         </div>
         <div class="col-md-6">
           <div class="img-box">
-            <img src="images/mobile.png" alt="">
+            <img src="images/mobilet.png" alt="">
           </div>
         </div>
       </div>
@@ -508,7 +558,7 @@
   <section class="why_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 data-i18n-html="why.title">
           Nega <br>
           aynan Poytaxt Taxi
         </h2>
@@ -520,10 +570,10 @@
             <img src="images/delivery-man-black.png" alt="" class="img-2">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="why.drivers.title">
               Malakali va tajribali haydovchilar
             </h5>
-            <p>
+            <p data-i18n="why.drivers.text">
               Tajribali, intizomli va mijozlarga hurmat bilan xizmat ko‘rsatuvchi haydovchilar.
             </p>
           </div>
@@ -534,10 +584,10 @@
             <img src="images/shield-black.png" alt="" class="img-2">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="why.safe.title">
               Ishonchli va xavfsiz xizmat
             </h5>
-            <p>
+            <p data-i18n="why.safe.text">
               Biz mijozlar xavfsizligini birinchi o‘ringa qo‘yamiz.
               Toza avtomobillar, nazorat ostidagi buyurtmalar va shaffof xizmat — har safarda xotirjamlik kafolati.
             </p>
@@ -549,10 +599,10 @@
             <img src="images/repairing-service-black.png" alt="" class="img-2">
           </div>
           <div class="detail-box">
-            <h5>
+            <h5 data-i18n="why.support.title">
               24/7 Doimiy qo‘llab-quvvatlash
             </h5>
-            <p>
+            <p data-i18n="why.support.text">
               Siz istalgan vaqtda biz bilan bog‘lanishingiz mumkin.
               Operatorlarimiz 24/7 xizmat ko‘rsatadi va har qanday savol yoki muammoni tezkor hal qiladi.
             </p>
@@ -570,7 +620,7 @@
     <div class="container">
       <div class="box">
         <div class="info_form">
-          <h4>
+          <h4 data-i18n="footer.tagline">
             Poytaxt Taxi - Har safarda qulaylik
           </h4>
           <form action="">
@@ -582,19 +632,20 @@
         <div class="info_links">
           <ul>
             <li class=" ">
-              <a class="" href="index.html">Asosiy <span class="sr-only">(current)</span></a>
+              <a class="" href="index.html"><span data-i18n="nav.home">Asosiy</span> <span class="sr-only"
+                  data-i18n="nav.current">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="about.html"> Biz haqimizda</a>
+              <a class="" href="about.html"><span data-i18n="nav.about">Biz haqimizda</span></a>
             </li>
             <li class="">
-              <a class="" href="service.html"> Xizmatlar </a>
+              <a class="" href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a>
             </li>
             <li class="">
-              <a class="" href="news.html"> Yangiliklar</a>
+              <a class="" href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a>
             </li>
             <li class="">
-              <a class="" href="contact.html">Biz bilan bog'lanish</a>
+              <a class="" href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a>
             </li>
 
           </ul>
@@ -616,7 +667,7 @@
             </a>
           </div>
           <div>
-            <a href="">
+            <a href="https://www.instagram.com/poytaxt_taxi?igsh=MXBsNGhzajdlZm0zZw==" target="_blank">
               <img src="images/instagram.png" alt="">
             </a>
           </div>
@@ -632,13 +683,14 @@
   <section class="container-fluid footer_section">
     <div class="container">
       <p>
-        &copy; 2026 Barcha huquqlar himoyalangan -
+        &copy; 2026 <span data-i18n="footer.rights">Barcha huquqlar himoyalangan</span> -
         <a href="https://html.design/">Nest Data Group</a>
       </p>
     </div>
   </section>
   <!-- footer section -->
 
+  <script type="text/javascript" src="js/i18n.js"></script>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
@@ -669,154 +721,197 @@
   <!-- end owl carousel script -->
   <script>
 
-    const districts = {
-      fargona: [
-        "Farg'ona shahri",
-        "Qo'qon",
-        "Marg'ilon",
-        "Quva",
-        "Rishton",
-        "Oltiariq",
-        "Beshariq"
-      ],
-
-      toshkent: [
-        "Yunusobod",
-        "Chilonzor",
-        "Yakkasaroy",
-        "Mirzo Ulug'bek",
-        "Sergeli",
-        "Bektemir"
-      ]
+    function getRegions() {
+      return window.i18n.regionKeys.map(function (key) {
+        return { value: key, label: window.i18n.t("region." + key) };
+      });
     }
 
+    function populateFromRegions() {
+      var fromSelect = document.getElementById("fromRegion");
+      if (!fromSelect) return;
+      var current = fromSelect.value;
+      fromSelect.innerHTML = '<option value="">' + window.i18n.t("form.from_region") + '</option>';
+      getRegions().forEach(function (r) {
+        var option = document.createElement("option");
+        option.value = r.value;
+        option.textContent = r.label;
+        fromSelect.appendChild(option);
+      });
+      if (current) fromSelect.value = current;
+    }
+
+    function updateToRegionOptions() {
+      var fromSelect = document.getElementById("fromRegion");
+      var toSelect = document.getElementById("toRegion");
+      if (!fromSelect || !toSelect) return;
+
+      var fromValue = fromSelect.value;
+      var currentTo = toSelect.value;
+
+      toSelect.innerHTML = '<option value="">' + window.i18n.t("form.to_region") + '</option>';
+
+      getRegions().forEach(function (r) {
+        if (r.value !== fromValue) {
+          var option = document.createElement("option");
+          option.value = r.value;
+          option.textContent = r.label;
+          toSelect.appendChild(option);
+        }
+      });
+
+      if (currentTo && currentTo !== fromValue) {
+        toSelect.value = currentTo;
+      } else {
+        updateDistricts("toRegion", "toDistrict");
+      }
+    }
 
     function updateDistricts(regionSelectId, districtSelectId) {
+      var regionSelect = document.getElementById(regionSelectId);
+      var districtSelect = document.getElementById(districtSelectId);
+      if (!regionSelect || !districtSelect) return;
 
-      const region = document.getElementById(regionSelectId).value
-      const districtSelect = document.getElementById(districtSelectId)
+      var region = regionSelect.value;
+      var current = districtSelect.value;
 
-      districtSelect.innerHTML = '<option value="">Tuman / Shahar tanlang</option>'
+      districtSelect.innerHTML = '<option value="">' + window.i18n.t("form.district_select") + '</option>';
 
-      if (districts[region]) {
-
-        districts[region].forEach(function (d) {
-
-          const option = document.createElement("option")
-          option.value = d
-          option.textContent = d
-
-          districtSelect.appendChild(option)
-
-        })
-
+      if (window.i18n.districtKeys[region]) {
+        window.i18n.districtKeys[region].forEach(function (key) {
+          var option = document.createElement("option");
+          option.value = key;
+          option.textContent = window.i18n.t("district." + key);
+          districtSelect.appendChild(option);
+        });
       }
 
+      if (current && window.i18n.districtKeys[region] && window.i18n.districtKeys[region].indexOf(current) !== -1) {
+        districtSelect.value = current;
+      }
     }
 
+    var fromRegionEl = document.getElementById("fromRegion");
+    var toRegionEl = document.getElementById("toRegion");
 
-    document.getElementById("fromRegion").addEventListener("change", function () {
-      updateDistricts("fromRegion", "fromDistrict")
-    })
+    if (fromRegionEl) {
+      fromRegionEl.addEventListener("change", function () {
+        updateDistricts("fromRegion", "fromDistrict");
+        updateToRegionOptions();
+      });
+    }
 
+    if (toRegionEl) {
+      toRegionEl.addEventListener("change", function () {
+        updateDistricts("toRegion", "toDistrict");
+      });
+    }
 
-    document.getElementById("toRegion").addEventListener("change", function () {
-      updateDistricts("toRegion", "toDistrict")
+    window.addEventListener("languageChanged", function () {
+      populateFromRegions();
+      updateToRegionOptions();
+      if (fromRegionEl && fromRegionEl.value) updateDistricts("fromRegion", "fromDistrict");
+      if (toRegionEl && toRegionEl.value) updateDistricts("toRegion", "toDistrict");
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      populateFromRegions();
+      updateToRegionOptions();
     });
 
   </script>
   <script>
 
-  const token = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
-  const chatId = "-1003777976859";
+    const token = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
+    const chatId = "-1003777976859";
 
-  document.getElementById("bookingForm").addEventListener("submit", function(e){
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
 
-  e.preventDefault();
+      e.preventDefault();
 
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let time = document.getElementById("time").value;
+      let name = document.getElementById("name").value;
+      let phone = document.getElementById("phone").value;
+      let time = document.getElementById("time").value;
 
-  let message =
-  "🚕 Yangi buyurtma!\n\n" +
-  "👤 Ism: " + name + "\n" +
-  "📞 Telefon: " + phone + "\n" +
-  "🕒 Vaqt: " + time;
+      let message =
+        "🚕 Yangi buyurtma!\n\n" +
+        "👤 Ism: " + name + "\n" +
+        "📞 Telefon: " + phone + "\n" +
+        "🕒 Vaqt: " + time;
 
-  let url = `https://api.telegram.org/bot${token}/sendMessage`;
+      let url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-  fetch(url,{
-  method:"POST",
-  headers:{
-  "Content-Type":"application/json"
-  },
-  body:JSON.stringify({
-  chat_id:chatId,
-  text:message
-  })
-  });
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      });
 
-  alert("Buyurtma yuborildi!");
-  document.getElementById("bookingForm").reset();
+      alert(window.i18n.t("alert.booking_sent"));
+      document.getElementById("bookingForm").reset();
 
-  });
+    });
 
-  </script>   
+  </script>
 
   <script>
 
-  const token2 = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
-  const chatId2 = "-1003777976859";
+    const token2 = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
+    const chatId2 = "-1003777976859";
 
-  document.getElementById("feedbackForm").addEventListener("submit", function(e){
+    document.getElementById("feedbackForm").addEventListener("submit", function (e) {
 
-  e.preventDefault();
+      e.preventDefault();
 
-  let name = document.getElementById("f_name").value;
-  let phone = document.getElementById("f_phone").value;
-  let messageText = document.getElementById("f_message").value;
+      let name = document.getElementById("f_name").value;
+      let phone = document.getElementById("f_phone").value;
+      let messageText = document.getElementById("f_message").value;
 
-  let message =
-  "💬 Yangi taklif yoki talab\n\n" +
-  "👤 Ism: " + name + "\n" +
-  "📞 Telefon: " + phone + "\n" +
-  "✉️ Habar: " + messageText;
+      let message =
+        "💬 Yangi taklif yoki talab\n\n" +
+        "👤 Ism: " + name + "\n" +
+        "📞 Telefon: " + phone + "\n" +
+        "✉️ Habar: " + messageText;
 
-  let url = `https://api.telegram.org/bot${token2}/sendMessage`;
+      let url = `https://api.telegram.org/bot${token2}/sendMessage`;
 
-  fetch(url,{
-  method:"POST",
-  headers:{
-  "Content-Type":"application/json"
-  },
-  body:JSON.stringify({
-  chat_id:chatId2,
-  text:message
-  })
-  });
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId2,
+          text: message
+        })
+      });
 
-  alert("Xabaringiz yuborildi!");
+      alert(window.i18n.t("alert.feedback_sent"));
 
-  // formani tozalash
-  document.getElementById("feedbackForm").reset();
+      // formani tozalash
+      document.getElementById("feedbackForm").reset();
 
-  });
+    });
 
   </script>
   <script>
-  const timeInput = document.getElementById("time");
-  const placeholder = document.querySelector(".time-placeholder");
+    const timeInput = document.getElementById("time");
+    const placeholder = document.querySelector(".time-placeholder");
 
-  timeInput.addEventListener("focus", function(){
-    placeholder.style.display = "none";
-  });
+    timeInput.addEventListener("focus", function () {
+      placeholder.style.display = "none";
+    });
 
-  timeInput.addEventListener("blur", function(){
-    if(!timeInput.value){
-      placeholder.style.display = "block";
-    }
-  });
+    timeInput.addEventListener("blur", function () {
+      if (!timeInput.value) {
+        placeholder.style.display = "block";
+      }
+    });
   </script>
 </body>
 
