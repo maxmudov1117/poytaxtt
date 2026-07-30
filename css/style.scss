@@ -985,3 +985,38 @@ a:focus {
     text-shadow: 3px 3px 6px rgba(220, 198, 76, 0.2);
   }
 }
+
+/* Bu kod date time inputni sozlaydi*/
+.time-wrapper{
+  position:relative;
+  max-width:320px;
+}
+
+.time-placeholder{
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#999;
+  font-size:16px;
+  pointer-events:none;
+}
+
+.time-input{
+  width:100%;
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+
+  /* Chrome/Safari: Hide native datetime-local mask when empty and not focused */
+  &::-webkit-datetime-edit {
+    color: transparent;
+  }
+
+  /* Chrome/Safari: Show native datetime-local digits/placeholders when focused or has a value */
+  &:focus::-webkit-datetime-edit,
+  &.has-value::-webkit-datetime-edit {
+    color: #0c0c0c;
+  }
+}

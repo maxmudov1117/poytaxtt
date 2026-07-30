@@ -145,7 +145,7 @@
               </div>
 
               <div class="btn-box">
-                <a href="" class="btn-1" data-i18n="hero.details">
+                <a href="about.html" class="btn-1" data-i18n="hero.details">
                   Batafsil
                 </a>
               </div>
@@ -155,7 +155,7 @@
             <div class="slider_form">
               <h4 data-i18n="form.order_title">Buyurtma qoldirish</h4>
 
-              <form id="bookingForm">
+              <form id="bookingForm" novalidate>
 
                 <input type="text" id="name" data-i18n-placeholder="form.name" placeholder="Ismingiz">
 
@@ -197,7 +197,7 @@
                 </div>
 
                 <div class="btm_input">
-                  <input type="tel" id="phone" data-i18n-placeholder="form.phone" placeholder="Telefon raqamingiz">
+                  <input type="tel" id="phone" data-i18n-placeholder="form.phone" placeholder="+998 __ ___ __ __">
                   <button type="submit" data-i18n="form.submit">Yuborish</button>
                 </div>
 
@@ -481,11 +481,11 @@
           <div class="contact_form">
             <h4 data-i18n="contact.form_title">Talab va takliflaringizni qoldiring</h4>
 
-            <form id="feedbackForm">
+            <form id="feedbackForm" novalidate>
 
               <input type="text" id="f_name" data-i18n-placeholder="contact.name" placeholder="Ismingiz">
 
-              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="Telefon raqamingiz">
+              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
 
               <input type="text" id="f_message" data-i18n-placeholder="contact.message" placeholder="Habar qoldirish"
                 class="message_input">
@@ -825,35 +825,80 @@
     const token = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
     const chatId = "-1003777976859";
 
+    function isValidName(name) {
+      return name.length >= 2 && /^[a-zA-Zа-яА-ЯёЁ\s'‘’ʻ`-]+$/.test(name);
+    }
+
+    function isValidPhone(phone) {
+      let cleanPhone = phone.replace(/[^\d+]/g, '');
+      return /^(?:\+?998)?\d{9}$/.test(cleanPhone);
+    }
+
     document.getElementById("bookingForm").addEventListener("submit", function (e) {
 
       e.preventDefault();
 
-      let name = document.getElementById("name").value;
-      let phone = document.getElementById("phone").value;
+      let name = document.getElementById("name").value.trim();
+      let fromRegionEl = document.getElementById("fromRegion");
+      let fromDistrictEl = document.getElementById("fromDistrict");
+      let toRegionEl = document.getElementById("toRegion");
+      let toDistrictEl = document.getElementById("toDistrict");
+      let passengersEl = document.getElementById("passengers");
       let time = document.getElementById("time").value;
+      let phone = document.getElementById("phone").value.trim();
+
+      let fromRegion = fromRegionEl ? fromRegionEl.value : "";
+      let fromDistrict = fromDistrictEl ? fromDistrictEl.value : "";
+      let toRegion = toRegionEl ? toRegionEl.value : "";
+      let toDistrict = toDistrictEl ? toDistrictEl.value : "";
+      let passengers = passengersEl ? passengersEl.value : "";
+
+      if (!name || !fromRegion || !fromDistrict || !toRegion || !toDistrict || !passengers || !time || !phone) {
+        window.showAlert(window.i18n.t("alert.fill_all_fields"), "error");
+        return;
+      }
+
+      if (!isValidName(name)) {
+        window.showAlert(window.i18n.t("alert.invalid_name"), "error");
+        return;
+      }
+
+      if (!isValidPhone(phone)) {
+        window.showAlert(window.i18n.t("alert.invalid_phone"), "error");
+        return;
+      }
+
+      let fromRegionText = fromRegionEl.options[fromRegionEl.selectedIndex].text;
+      let fromDistrictText = fromDistrictEl.options[fromDistrictEl.selectedIndex].text;
+      let toRegionText = toRegionEl.options[toRegionEl.selectedIndex].text;
+      let toDistrictText = toDistrictEl.options[toDistrictEl.selectedIndex].text;
+      let passengersText = passengersEl.options[passengersEl.selectedIndex].text;
 
       let message =
         "🚕 Yangi buyurtma!\n\n" +
         "👤 Ism: " + name + "\n" +
         "📞 Telefon: " + phone + "\n" +
-        "🕒 Vaqt: " + time;
+        "📍 Qayerdan: " + fromRegionText + " / " + fromDistrictText + "\n" +
+        "🏁 Qayerga: " + toRegionText + " / " + toDistrictText + "\n" +
+        "👥 Yo'lovchilar soni: " + passengersText + "\n" +
+        "🕒 Sana va vaqt: " + time;
 
       let url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
-        })
+      window.showConfirm(window.i18n.t("alert.confirm_order"), function() {
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        });
+        window.showAlert(window.i18n.t("alert.booking_sent"), "success");
+        document.getElementById("bookingForm").reset();
       });
-
-      alert(window.i18n.t("alert.booking_sent"));
-      document.getElementById("bookingForm").reset();
 
     });
 
@@ -868,9 +913,24 @@
 
       e.preventDefault();
 
-      let name = document.getElementById("f_name").value;
-      let phone = document.getElementById("f_phone").value;
-      let messageText = document.getElementById("f_message").value;
+      let name = document.getElementById("f_name").value.trim();
+      let phone = document.getElementById("f_phone").value.trim();
+      let messageText = document.getElementById("f_message").value.trim();
+
+      if (!name || !phone || !messageText) {
+        window.showAlert(window.i18n.t("alert.fill_all_fields"), "error");
+        return;
+      }
+
+      if (!isValidName(name)) {
+        window.showAlert(window.i18n.t("alert.invalid_name"), "error");
+        return;
+      }
+
+      if (!isValidPhone(phone)) {
+        window.showAlert(window.i18n.t("alert.invalid_phone"), "error");
+        return;
+      }
 
       let message =
         "💬 Yangi taklif yoki talab\n\n" +
@@ -903,15 +963,46 @@
     const timeInput = document.getElementById("time");
     const placeholder = document.querySelector(".time-placeholder");
 
+    function updateTimeInputState() {
+      if (timeInput.value) {
+        placeholder.style.display = "none";
+        timeInput.classList.add("has-value");
+      } else {
+        timeInput.classList.remove("has-value");
+        if (document.activeElement === timeInput) {
+          placeholder.style.display = "none";
+        } else {
+          placeholder.style.display = "block";
+        }
+      }
+    }
+
     timeInput.addEventListener("focus", function () {
       placeholder.style.display = "none";
     });
 
     timeInput.addEventListener("blur", function () {
-      if (!timeInput.value) {
-        placeholder.style.display = "block";
-      }
+      updateTimeInputState();
     });
+
+    timeInput.addEventListener("input", function () {
+      updateTimeInputState();
+    });
+
+    timeInput.addEventListener("change", function () {
+      updateTimeInputState();
+    });
+
+    // Check initial state
+    updateTimeInputState();
+
+    // Reset handler for the form
+    const bookingForm = document.getElementById("bookingForm");
+    if (bookingForm) {
+      bookingForm.addEventListener("reset", function () {
+        setTimeout(updateTimeInputState, 0);
+      });
+    }
   </script>
 </body>
 

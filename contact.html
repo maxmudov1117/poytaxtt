@@ -74,7 +74,7 @@
             <h4 data-i18n="contact.form_title">Talab va takliflaringizni qoldiring</h4>
             <form id="feedbackForm">
               <input type="text" id="f_name" data-i18n-placeholder="contact.name" placeholder="Ismingiz">
-              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="Telefon raqamingiz">
+              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
               <input type="text" id="f_message" data-i18n-placeholder="contact.message" placeholder="Habar qoldirish" class="message_input">
               <button type="submit" data-i18n="contact.submit">Yuborish</button>
             </form>
@@ -128,11 +128,36 @@
   const token2 = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
   const chatId2 = "-1003777976859";
 
+  function isValidName(name) {
+    return name.length >= 2 && /^[a-zA-Zа-яА-ЯёЁ\s'‘’ʻ`-]+$/.test(name);
+  }
+
+  function isValidPhone(phone) {
+    let cleanPhone = phone.replace(/[^\d+]/g, '');
+    return /^(?:\+?998)?\d{9}$/.test(cleanPhone);
+  }
+
   document.getElementById("feedbackForm").addEventListener("submit", function(e){
     e.preventDefault();
-    let name = document.getElementById("f_name").value;
-    let phone = document.getElementById("f_phone").value;
-    let messageText = document.getElementById("f_message").value;
+    let name = document.getElementById("f_name").value.trim();
+    let phone = document.getElementById("f_phone").value.trim();
+    let messageText = document.getElementById("f_message").value.trim();
+
+    if (!name || !phone || !messageText) {
+      window.showAlert(window.i18n.t("alert.fill_all_fields"), "error");
+      return;
+    }
+
+    if (!isValidName(name)) {
+      window.showAlert(window.i18n.t("alert.invalid_name"), "error");
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      window.showAlert(window.i18n.t("alert.invalid_phone"), "error");
+      return;
+    }
+
     let message =
       "💬 Yangi taklif yoki talab\n\n" +
       "👤 Ism: " + name + "\n" +
@@ -143,7 +168,7 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: chatId2, text: message })
     });
-    alert(window.i18n.t("alert.feedback_sent"));
+    window.showAlert(window.i18n.t("alert.feedback_sent"), "success");
     document.getElementById("feedbackForm").reset();
   });
   </script>

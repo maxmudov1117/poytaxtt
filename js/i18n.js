@@ -27,7 +27,7 @@
       "form.to_district": "Qaysi shahar yoki tumanga",
       "form.datetime": "Sana va vaqt",
       "form.passengers": "Yo'lovchilar soni",
-      "form.phone": "Telefon raqamingiz",
+      "form.phone": "+998 __ ___ __ __",
       "form.submit": "Yuborish",
       "form.district_select": "Tuman / Shahar tanlang",
       "region.fargona": "Farg'ona",
@@ -81,7 +81,7 @@
       "contact.title": "Talab va<br>Takliflar",
       "contact.form_title": "Talab va takliflaringizni qoldiring",
       "contact.name": "Ismingiz",
-      "contact.phone": "Telefon raqamingiz",
+      "contact.phone": "+998 __ ___ __ __",
       "contact.message": "Habar qoldirish",
       "contact.submit": "Yuborish",
       "app.title": "Mobil ilovani yuklab oling",
@@ -98,7 +98,13 @@
       "quick.label": "Buyurtma uchun:",
       "quick.text": "buyurtma uchun : 📞 7799",
       "alert.booking_sent": "Buyurtma yuborildi!",
-      "alert.feedback_sent": "Xabaringiz yuborildi!"
+      "alert.feedback_sent": "Xabaringiz yuborildi!",
+      "alert.fill_all_fields": "Iltimos, barcha majburiy maydonlarni to'ldiring!",
+      "alert.invalid_name": "Iltimos, ismingizni to'g'ri kiriting (faqat harflar, kamida 2 ta belgi)!",
+      "alert.invalid_phone": "Iltimos, telefon raqamingizni to'g'ri formatda kiriting (masalan: +998 90 123 45 67)!",
+      "alert.confirm_order": "Buyurtmani amalga oshirmoqchimisiz?",
+      "alert.yes": "Ha",
+      "alert.cancel": "Bekor qilish"
     },
     ru: {
       "page.title": "Poytaxt Taxi",
@@ -119,7 +125,7 @@
       "form.to_district": "В какой город или район",
       "form.datetime": "Дата и время",
       "form.passengers": "Количество пассажиров",
-      "form.phone": "Ваш номер телефона",
+      "form.phone": "+998 __ ___ __ __",
       "form.submit": "Отправить",
       "form.district_select": "Выберите город / район",
       "region.fargona": "Фергана",
@@ -173,7 +179,7 @@
       "contact.title": "Заявки и<br>предложения",
       "contact.form_title": "Оставьте заявку или предложение",
       "contact.name": "Ваше имя",
-      "contact.phone": "Ваш номер телефона",
+      "contact.phone": "+998 __ ___ __ __",
       "contact.message": "Оставить сообщение",
       "contact.submit": "Отправить",
       "app.title": "Скачайте мобильное приложение",
@@ -190,7 +196,13 @@
       "quick.label": "Для заказа:",
       "quick.text": "для заказа: 📞 7799",
       "alert.booking_sent": "Заказ отправлен!",
-      "alert.feedback_sent": "Ваше сообщение отправлено!"
+      "alert.feedback_sent": "Ваше сообщение отправлено!",
+      "alert.fill_all_fields": "Пожалуйста, заполните все обязательные поля!",
+      "alert.invalid_name": "Пожалуйста, введите корректное имя (только буквы, минимум 2 символа)!",
+      "alert.invalid_phone": "Пожалуйста, введите корректный номер телефона (например: +998 90 123 45 67)!",
+      "alert.confirm_order": "Хотите оформить заказ?",
+      "alert.yes": "Да",
+      "alert.cancel": "Отмена"
     },
     en: {
       "page.title": "Poytaxt Taxi",
@@ -211,7 +223,7 @@
       "form.to_district": "To which city or district",
       "form.datetime": "Date and time",
       "form.passengers": "Number of passengers",
-      "form.phone": "Your phone number",
+      "form.phone": "+998 __ ___ __ __",
       "form.submit": "Send",
       "form.district_select": "Select city / district",
       "region.fargona": "Fergana",
@@ -265,7 +277,7 @@
       "contact.title": "Requests &<br>suggestions",
       "contact.form_title": "Leave your request or suggestion",
       "contact.name": "Your name",
-      "contact.phone": "Your phone number",
+      "contact.phone": "+998 __ ___ __ __",
       "contact.message": "Leave a message",
       "contact.submit": "Send",
       "app.title": "Download the mobile app",
@@ -282,7 +294,13 @@
       "quick.label": "To book:",
       "quick.text": "To book: 📞 7799",
       "alert.booking_sent": "Order sent!",
-      "alert.feedback_sent": "Your message has been sent!"
+      "alert.feedback_sent": "Your message has been sent!",
+      "alert.fill_all_fields": "Please fill in all required fields!",
+      "alert.invalid_name": "Please enter a valid name (letters only, at least 2 characters)!",
+      "alert.invalid_phone": "Please enter a valid phone number (e.g. +998 90 123 45 67)!",
+      "alert.confirm_order": "Do you want to place the order?",
+      "alert.yes": "Yes",
+      "alert.cancel": "Cancel"
     }
   };
 
@@ -335,6 +353,74 @@
     getLanguage: function () { return currentLang; },
     districtKeys: districtKeys,
     regionKeys: ["fargona", "toshkent"]
+  };
+  window.showAlert = function(message, type) {
+    type = type || 'error';
+    var toast = document.createElement('div');
+    toast.className = 'custom-toast ' + (type === 'success' ? 'success' : 'error');
+    toast.innerHTML = '<span>' + (type === 'success' ? '✅ ' : '⚠️ ') + message + '</span>';
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(function() {
+      toast.classList.add('show');
+    }, 10);
+    
+    setTimeout(function() {
+      toast.classList.remove('show');
+      setTimeout(function() {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  };
+
+  window.showConfirm = function(message, onConfirm, onCancel) {
+    var overlay = document.createElement('div');
+    overlay.className = 'custom-confirm-overlay';
+    
+    var modal = document.createElement('div');
+    modal.className = 'custom-confirm-modal';
+    
+    var text = document.createElement('p');
+    text.textContent = message;
+    
+    var btnContainer = document.createElement('div');
+    btnContainer.className = 'custom-confirm-buttons';
+    
+    var btnYes = document.createElement('button');
+    btnYes.className = 'btn-yes';
+    btnYes.textContent = window.i18n.t("alert.yes") || "Yes";
+    
+    var btnNo = document.createElement('button');
+    btnNo.className = 'btn-no';
+    btnNo.textContent = window.i18n.t("alert.cancel") || "Cancel";
+    
+    btnContainer.appendChild(btnNo);
+    btnContainer.appendChild(btnYes);
+    
+    modal.appendChild(text);
+    modal.appendChild(btnContainer);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    function close() {
+      overlay.classList.add('fade-out');
+      setTimeout(function() {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+      }, 300);
+    }
+    
+    btnYes.onclick = function() {
+      close();
+      if (onConfirm) onConfirm();
+    };
+    
+    btnNo.onclick = function() {
+      close();
+      if (onCancel) onCancel();
+    };
   };
 
   document.addEventListener("DOMContentLoaded", function () {
