@@ -347,6 +347,11 @@ a:focus {
   outline: none;
 }
 
+.slider_form form select {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
 .slider_section .slider_form form .btm_input button {
 	-webkit-box-flex: 1;
 	-ms-flex: 1;

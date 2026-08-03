@@ -48,7 +48,7 @@
                   <a class="nav-link" href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a>
+                  <a class="nav-link" href="index.html#news-section"><span data-i18n="nav.news">Yangiliklar</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a>
@@ -74,7 +74,7 @@
             <h4 data-i18n="contact.form_title">Talab va takliflaringizni qoldiring</h4>
             <form id="feedbackForm">
               <input type="text" id="f_name" data-i18n-placeholder="contact.name" placeholder="Ismingiz">
-              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
+              <input type="tel" id="f_phone" inputmode="numeric" pattern="[0-9+]*" autocomplete="tel" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
               <input type="text" id="f_message" data-i18n-placeholder="contact.message" placeholder="Habar qoldirish" class="message_input">
               <button type="submit" data-i18n="contact.submit">Yuborish</button>
             </form>

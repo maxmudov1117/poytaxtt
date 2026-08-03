@@ -67,7 +67,7 @@
                   <a class="nav-link" href="service.html"><span data-i18n="nav.services">Xizmatlar</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="news.html"><span data-i18n="nav.news">Yangiliklar</span></a>
+                  <a class="nav-link" href="index.html#news-section"><span data-i18n="nav.news">Yangiliklar</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html"><span data-i18n="nav.contact">Biz bilan bog'lanish</span></a>
@@ -144,15 +144,10 @@
                 </div>
               </div>
 
-              <div class="btn-box">
-                <a href="about.html" class="btn-1" data-i18n="hero.details">
-                  Batafsil
-                </a>
-              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-5 ">
-            <div class="slider_form">
+            <div class="slider_form" id="booking-form">
               <h4 data-i18n="form.order_title">Buyurtma qoldirish</h4>
 
               <form id="bookingForm" novalidate>
@@ -197,7 +192,7 @@
                 </div>
 
                 <div class="btm_input">
-                  <input type="tel" id="phone" data-i18n-placeholder="form.phone" placeholder="+998 __ ___ __ __">
+                  <input type="tel" id="phone" inputmode="numeric" pattern="[0-9+]*" autocomplete="tel" data-i18n-placeholder="form.phone" placeholder="+998 __ ___ __ __">
                   <button type="submit" data-i18n="form.submit">Yuborish</button>
                 </div>
 
@@ -228,9 +223,6 @@
               mijozlar bizni tanlaydi, chunki biz uchun xavfsizlik, intizom va qulaylik ustuvor.
               Har safar — mas’uliyat bilan.
             </p>
-            <a href="" data-i18n="about.details">
-              Batafsil
-            </a>
           </div>
         </div>
         <div class="col-md-6">
@@ -329,7 +321,7 @@
 
   <!-- news section -->
 
-  <section class="news_section layout_padding">
+  <section class="news_section layout_padding" id="news-section">
     <div class="container">
       <div class="heading_container">
         <h2 data-i18n-html="news.title">
@@ -485,7 +477,7 @@
 
               <input type="text" id="f_name" data-i18n-placeholder="contact.name" placeholder="Ismingiz">
 
-              <input type="text" id="f_phone" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
+              <input type="tel" id="f_phone" inputmode="numeric" pattern="[0-9+]*" autocomplete="tel" data-i18n-placeholder="contact.phone" placeholder="+998 __ ___ __ __">
 
               <input type="text" id="f_message" data-i18n-placeholder="contact.message" placeholder="Habar qoldirish"
                 class="message_input">
@@ -786,6 +778,8 @@
         });
       }
 
+      districtSelect.size = Math.min(10, Math.max(4, districtSelect.options.length));
+
       if (current && window.i18n.districtKeys[region] && window.i18n.districtKeys[region].indexOf(current) !== -1) {
         districtSelect.value = current;
       }
@@ -817,9 +811,32 @@
     document.addEventListener("DOMContentLoaded", function () {
       populateFromRegions();
       updateToRegionOptions();
+
+      if (window.location.hash === "#booking-form") {
+        const bookingForm = document.getElementById("bookingForm");
+        if (bookingForm) {
+          setTimeout(function () {
+            bookingForm.scrollIntoView({ behavior: "smooth", block: "start" });
+            const firstInput = bookingForm.querySelector("input, select, button");
+            if (firstInput) {
+              firstInput.focus({ preventScroll: true });
+            }
+          }, 150);
+        }
+      }
+
+      if (window.location.hash === "#news-section") {
+        const newsSection = document.getElementById("news-section");
+        if (newsSection) {
+          setTimeout(function () {
+            newsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 150);
+        }
+      }
     });
 
   </script>
+  <script src="js/booking-datetime.js"></script>
   <script>
 
     const token = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
@@ -858,6 +875,11 @@
         return;
       }
 
+      if (typeof window.isDateTimeAllowed !== "function" || !window.isDateTimeAllowed(time, new Date())) {
+        window.showAlert(typeof getFutureDateTimeMessage === "function" ? getFutureDateTimeMessage() : "Iltimos, kelajakdagi sana va vaqtni tanlang.", "error");
+        return;
+      }
+
       if (!isValidName(name)) {
         window.showAlert(window.i18n.t("alert.invalid_name"), "error");
         return;
@@ -886,6 +908,11 @@
       let url = `https://api.telegram.org/bot${token}/sendMessage`;
 
       window.showConfirm(window.i18n.t("alert.confirm_order"), function() {
+        if (!navigator.onLine) {
+          window.showAlert(window.i18n.t("alert.booking_failed") || "Buyurtma yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
+          return;
+        }
+
         fetch(url, {
           method: "POST",
           headers: {
@@ -895,9 +922,20 @@
             chat_id: chatId,
             text: message
           })
+        }).then(function(response) {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        }).then(function(data) {
+          if (!data || data.ok !== true) {
+            throw new Error("Telegram request failed");
+          }
+          window.showAlert(window.i18n.t("alert.booking_sent"), "success");
+          document.getElementById("bookingForm").reset();
+        }).catch(function() {
+          window.showAlert(window.i18n.t("alert.booking_failed") || "Buyurtma yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
         });
-        window.showAlert(window.i18n.t("alert.booking_sent"), "success");
-        document.getElementById("bookingForm").reset();
       });
 
     });
@@ -940,6 +978,11 @@
 
       let url = `https://api.telegram.org/bot${token2}/sendMessage`;
 
+      if (!navigator.onLine) {
+        window.showAlert(window.i18n.t("alert.feedback_failed") || "Xabar yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
+        return;
+      }
+
       fetch(url, {
         method: "POST",
         headers: {
@@ -949,12 +992,20 @@
           chat_id: chatId2,
           text: message
         })
+      }).then(function(response) {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      }).then(function(data) {
+        if (!data || data.ok !== true) {
+          throw new Error("Telegram request failed");
+        }
+        window.showAlert(window.i18n.t("alert.feedback_sent"), "success");
+        document.getElementById("feedbackForm").reset();
+      }).catch(function() {
+        window.showAlert(window.i18n.t("alert.feedback_failed") || "Xabar yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
       });
-
-      alert(window.i18n.t("alert.feedback_sent"));
-
-      // formani tozalash
-      document.getElementById("feedbackForm").reset();
 
     });
 
@@ -963,7 +1014,16 @@
     const timeInput = document.getElementById("time");
     const placeholder = document.querySelector(".time-placeholder");
 
+    function getFutureDateTimeMessage() {
+      if (window.i18n && typeof window.i18n.t === "function") {
+        return window.i18n.t("alert.past_datetime") || "Iltimos, kelajakdagi sana va vaqtni tanlang.";
+      }
+      return "Iltimos, kelajakdagi sana va vaqtni tanlang.";
+    }
+
     function updateTimeInputState() {
+      if (!timeInput || !placeholder) return;
+
       if (timeInput.value) {
         placeholder.style.display = "none";
         timeInput.classList.add("has-value");
@@ -977,30 +1037,56 @@
       }
     }
 
-    timeInput.addEventListener("focus", function () {
-      placeholder.style.display = "none";
-    });
+    function syncTimeInputLimits() {
+      if (!timeInput) return;
 
-    timeInput.addEventListener("blur", function () {
-      updateTimeInputState();
-    });
+      const now = new Date();
+      if (typeof window.formatDateTimeLocal === "function") {
+        timeInput.setAttribute("min", window.formatDateTimeLocal(now));
+      }
 
-    timeInput.addEventListener("input", function () {
-      updateTimeInputState();
-    });
+      if (timeInput.value && typeof window.isDateTimeAllowed === "function" && !window.isDateTimeAllowed(timeInput.value, now)) {
+        timeInput.value = "";
+        updateTimeInputState();
+        if (window.showAlert) {
+          window.showAlert(getFutureDateTimeMessage(), "error");
+        }
+      }
+    }
 
-    timeInput.addEventListener("change", function () {
-      updateTimeInputState();
-    });
+    if (timeInput) {
+      timeInput.addEventListener("focus", function () {
+        syncTimeInputLimits();
+        placeholder.style.display = "none";
+      });
+
+      timeInput.addEventListener("blur", function () {
+        updateTimeInputState();
+      });
+
+      timeInput.addEventListener("input", function () {
+        syncTimeInputLimits();
+        updateTimeInputState();
+      });
+
+      timeInput.addEventListener("change", function () {
+        syncTimeInputLimits();
+        updateTimeInputState();
+      });
+    }
 
     // Check initial state
     updateTimeInputState();
+    syncTimeInputLimits();
 
     // Reset handler for the form
     const bookingForm = document.getElementById("bookingForm");
     if (bookingForm) {
       bookingForm.addEventListener("reset", function () {
-        setTimeout(updateTimeInputState, 0);
+        setTimeout(function () {
+          updateTimeInputState();
+          syncTimeInputLimits();
+        }, 0);
       });
     }
   </script>
