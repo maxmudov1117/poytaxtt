@@ -348,8 +348,8 @@ a:focus {
 }
 
 .slider_form form select {
-  max-height: 220px;
-  overflow-y: auto;
+  max-height: 48px;
+  overflow-y: visible;
 }
 
 .slider_section .slider_form form .btm_input button {

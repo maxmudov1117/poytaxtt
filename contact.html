@@ -5,10 +5,24 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <title>Poytaxt Taxi</title>
+  <meta name="keywords" content="poytaxt taxi aloqa, taksi buyurtma, taksi bilan bog‘lanish" />
+  <meta name="description" content="Poytaxt Taxi bilan bog‘laning. Savollar, takliflar yoki buyurtmalar uchun formani to‘ldiring." />
+  <meta name="author" content="Poytaxt Taxi" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://poytaxt-taxi.uz/contact.html" />
+  <meta property="og:title" content="Poytaxt Taxi bilan bog‘lanish" />
+  <meta property="og:description" content="Savollar yoki buyurtmalar uchun bog‘laning." />
+  <meta property="og:url" content="https://poytaxt-taxi.uz/contact.html" />
+  <meta property="og:image" content="https://poytaxt-taxi.uz/images/logo_99.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Poytaxt Taxi bilan bog‘lanish" />
+  <meta name="twitter:description" content="Savollar yoki buyurtmalar uchun bog‘laning." />
+  <meta name="twitter:image" content="https://poytaxt-taxi.uz/images/logo_99.png" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; connect-src 'self' https://api.telegram.org https://cdnjs.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.telegram.org;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()" />
+  <title>Poytaxt Taxi | Bog‘lanish</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -109,7 +123,7 @@
           <div><a href=""><img src="images/fb.png" alt=""></a></div>
           <div><a href=""><img src="images/twitter.png" alt=""></a></div>
           <div><a href=""><img src="images/linkedin.png" alt=""></a></div>
-          <div><a href="https://www.instagram.com/poytaxt_taxi?igsh=MXBsNGhzajdlZm0zZw==" target="_blank"><img src="images/instagram.png" alt=""></a></div>
+          <div><a href="https://www.instagram.com/poytaxt_taxi?igsh=MXBsNGhzajdlZm0zZw==" target="_blank" rel="noopener noreferrer"><img src="images/instagram.png" alt=""></a></div>
         </div>
       </div>
     </div>
@@ -117,7 +131,7 @@
 
   <section class="container-fluid footer_section">
     <div class="container">
-      <p>&copy; 2026 <span data-i18n="footer.rights">Barcha huquqlar himoyalangan</span> - <a href="https://html.design/">Nest Data Group</a></p>
+      <p>&copy; 2026 <span data-i18n="footer.rights">Barcha huquqlar himoyalangan</span> - <a href="https://html.design/" rel="noopener noreferrer">Nest Data Group</a></p>
     </div>
   </section>
 
@@ -127,6 +141,15 @@
   <script>
   const token2 = "8258043623:AAHouwaQTX3kbmQVaPTG6CocSxmYga5HYSY";
   const chatId2 = "-1003777976859";
+
+  function escapeText(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 
   function isValidName(name) {
     return name.length >= 2 && /^[a-zA-Zа-яА-ЯёЁ\s'‘’ʻ`-]+$/.test(name);
@@ -160,16 +183,33 @@
 
     let message =
       "💬 Yangi taklif yoki talab\n\n" +
-      "👤 Ism: " + name + "\n" +
-      "📞 Telefon: " + phone + "\n" +
-      "✉️ Habar: " + messageText;
-    fetch(`https://api.telegram.org/bot${token2}/sendMessage`, {
+      "👤 Ism: " + escapeText(name) + "\n" +
+      "📞 Telefon: " + escapeText(phone) + "\n" +
+      "✉️ Habar: " + escapeText(messageText);
+
+    if (!navigator.onLine) {
+      window.showAlert(window.i18n.t("alert.feedback_failed") || "Xabar yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
+      return;
+    }
+
+    fetch('/api/form', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId2, text: message })
+      body: JSON.stringify({ type: 'feedback', name: name, phone: phone, message: message })
+    }).then(function(response) {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    }).then(function(data) {
+      if (!data || data.ok !== true) {
+        throw new Error("Telegram request failed");
+      }
+      window.showAlert(window.i18n.t("alert.feedback_sent"), "success");
+      document.getElementById("feedbackForm").reset();
+    }).catch(function() {
+      window.showAlert(window.i18n.t("alert.feedback_failed") || "Xabar yuborilmadi. Internet aloqasi yoki server xatosi yuz berdi.", "error");
     });
-    window.showAlert(window.i18n.t("alert.feedback_sent"), "success");
-    document.getElementById("feedbackForm").reset();
   });
   </script>
 </body>
