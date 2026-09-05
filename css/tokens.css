@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Poytaxt Taxi - design tokens
+   One palette: deep navy ink, milk paper, a single blue accent. No gold.
+   Shadows are tinted navy, never pure black. Radius scale is locked:
+   buttons = pill, cards/media = lg, inputs = md, chips = sm.
+   ========================================================================== */
+
+:root {
+  /* ink -------------------------------------------------------------- */
+  --ink-950: #050a16;
+  --ink-900: #08101f;
+  --ink-850: #0b1626;
+  --ink-800: #0f1d33;
+  --ink-700: #16294a;
+  --ink-600: #1e3a66;
+
+  /* accent - single, locked across every section --------------------- */
+  --blue-700: #1740b4;
+  --blue-600: #1b4fd8;
+  --blue-500: #2a63f0;
+  --blue-400: #4b85ff;
+  --blue-300: #86b2ff;
+  --azure:    #3e8fe0;
+
+  /* milk - paper, deliberately not #fff ------------------------------ */
+  --milk-000: #fbfaf7;
+  --milk-050: #f6f5f1;
+  --milk-100: #efeee9;
+  --milk-200: #e4e3dd;
+  --milk-300: #d5d4cd;
+
+  /* chrome - picks up the silver of the fleet renders ---------------- */
+  --chrome-100: #dfe4ea;
+  --chrome-300: #aab4c1;
+
+  /* text ------------------------------------------------------------- */
+  --text:          #0b1626;
+  --text-soft:     #55616f;
+  --text-mute:     #7b8694;
+  --text-inv:      #eef2f8;
+  --text-inv-soft: #9db0c9;
+  --text-inv-mute: #6c7f97;
+
+  /* lines ------------------------------------------------------------ */
+  --line:            #e4e3dc;
+  --line-strong:     #cfcec6;
+  --line-inv:        rgba(255, 255, 255, .09);
+  --line-inv-strong: rgba(255, 255, 255, .17);
+
+  /* gradients -------------------------------------------------------- */
+  --grad-ink:          radial-gradient(125% 100% at 72% -12%, #1c3360 0%, #0d1a2e 44%, #060c1a 100%);
+  --grad-ink-flat:     linear-gradient(180deg, #08101f 0%, #050a16 100%);
+  --grad-milk:         linear-gradient(180deg, #fbfaf7 0%, #f3f2ec 100%);
+  --grad-milk-rev:     linear-gradient(180deg, #f3f2ec 0%, #fbfaf7 100%);
+  --grad-accent:       linear-gradient(135deg, #2a63f0 0%, #1b4fd8 52%, #3e8fe0 100%);
+  --grad-accent-soft:  linear-gradient(135deg, rgba(42, 99, 240, .13), rgba(62, 143, 224, .08));
+  --grad-chrome:       linear-gradient(160deg, #fdfdfc 0%, #e8ebef 46%, #ccd3dc 100%);
+  --grad-rule-inv:     linear-gradient(90deg, transparent, rgba(255, 255, 255, .16) 20%, rgba(255, 255, 255, .16) 80%, transparent);
+
+  /* radius - locked scale -------------------------------------------- */
+  --r-pill: 999px;
+  --r-lg:   20px;
+  --r-md:   14px;
+  --r-sm:   10px;
+
+  /* elevation -------------------------------------------------------- */
+  --sh-1:      0 1px 2px rgba(11, 22, 38, .05), 0 2px 8px rgba(11, 22, 38, .04);
+  --sh-2:      0 4px 12px rgba(11, 22, 38, .06), 0 14px 34px rgba(11, 22, 38, .07);
+  --sh-3:      0 10px 26px rgba(11, 22, 38, .09), 0 30px 70px rgba(11, 22, 38, .13);
+  --sh-ink:    0 24px 70px rgba(2, 6, 15, .5);
+  --sh-accent: 0 8px 22px rgba(27, 79, 216, .28);
+
+  /* motion ----------------------------------------------------------- */
+  --ease:     cubic-bezier(.16, 1, .3, 1);
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --t-1: .16s;
+  --t-2: .3s;
+  --t-3: .6s;
+
+  /* layout ----------------------------------------------------------- */
+  --wrap:        1240px;
+  --wrap-narrow: 940px;
+  --gutter:      clamp(1.25rem, 4vw, 3rem);
+  --sec-y:       clamp(3rem, 4vw, 4.5rem);
+  /* how far the proof card lifts into the fleet section above it; the
+     fleet's bottom padding is derived from this so the visible gap under
+     the car stays exactly one --sec-y, same as every other section */
+  --proof-lift:  clamp(4rem, 6vw, 6.5rem);
+  --hdr-h:       72px;
+  --topbar-h:    38px;
+
+  /* z-index scale - the only layers that exist ----------------------- */
+  --z-base:    1;
+  --z-sticky:  40;
+  --z-header:  50;
+  --z-overlay: 80;
+  --z-toast:   90;
+}
